@@ -16,9 +16,10 @@ Time spent: 10 hours spent in total
   - [x] Steps to recreate: 
       1.log in then log out
       2.add the ?redirect_to=anywebpage to the URL in the address bar
-      3.when they sign in they will be redirected to the page
+      3.when they sign in they will be redirected to anypage within the site.
+      4.this can be used to forward to a malicious script stored in a post.
       -P.o.C:
-  wpdistillery.vm/wp-login.php?redirect_to=http://maliciousscript.hax
+  wpdistillery.vm/wp-login.php?redirect_to=http://wpdistillery.vm
   - [x] Affected source code:
     - https://core.trac.wordpress.org/changeset/36444
 
@@ -37,7 +38,7 @@ Time spent: 10 hours spent in total
   - [x] Affected source code:
     - https://github.com/WordPress/WordPress/commit/f72b21af23da6b6d54208e5c1d65ececdaa109c8
     
- 3. (Required) WordPress <= 4.9.4 - Application Denial of Service (DoS)
+ 3. (Required) WordPress <= 4.9.4 - Application Denial of Service (DoS) unpatched
   - [x] Summary: 
     - Vulnerability types: Denial of Service attack
     - Tested in version: 4.1
@@ -47,18 +48,35 @@ Time spent: 10 hours spent in total
     <img src='https://media.giphy.com/media/4WF55RRHEDoSicH0ES/giphy.gif'/>
   - [x] Steps to recreate: 
   A simple Script In Python With threading,the flaw affects the load-scripts.php WordPress script, it receives a parameter called load[]
-  - [x] Affected source code: unpatched
+  - [x] Affected source code: 
     -https://github.com/WazeHell/CVE-2018-6389/blob/master/CVE-2018-6389.py
 
-4. (optional) Vulnerability Name or ID
-  - [ ] Summary: 
-    - Vulnerability types:
-    - Tested in version:
-    - Fixed in version: 
+4. (optional) Directory enumeration and traversal
+  - [x] Summary: 
+    - Vulnerability types: Path traversal + Directory Listing + Directory Deletion Vulnerabilities
+    - Tested in version: 4.1
+    - Fixed in version: 4.2
+  - [x] GIF Walkthrough: 
+  <br>
+    <img src='https://media.giphy.com/media/4WF55RRHEDoSicH0ES/giphy.gif'/>
+  - [x] Steps to recreate: As Admin, in the dashboard, go to plugins and delete one. then in the url modify the params accordingly.
+  http://wpdistillery.vm/wp-admin/plugins.php?action=delete-selected&checked%5B0%5D=../../../../.&plugin_status=all&paged=1&s&_wpnonce=ca4cb429a7
+  - [x] Affected source code:
+    - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+    
+ 5 . (optional) XSRF Cvulnerability exists in the filesystem credentials dialog CVE-2017-9064
+  - [x] Summary: 
+    - Vulnerability types: CSRF
+    - Tested in version: 4.1
+    - Fixed in version: 4.7.5
   - [ ] GIF Walkthrough: 
+  
   - [ ] Steps to recreate: 
+  
   - [ ] Affected source code:
     - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+    
+## Assets
 ## Assets
 
 List any additional assets, such as scripts or files
